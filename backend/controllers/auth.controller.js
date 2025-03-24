@@ -1,5 +1,6 @@
 import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
+import { generateTokenAndSetCookie } from "../utils/generateToken.js";
 
 //Sign Up
 export async function signup(req, res) {
@@ -50,6 +51,9 @@ export async function signup(req, res) {
             image: userImage
         })
 
+        //before you save user in db first generate jwt 
+        generateTokenAndSetCookie(newUser._id, res);
+
         //save to DB
         await newUser.save()
 
@@ -60,7 +64,7 @@ export async function signup(req, res) {
                 ...newUser._doc,
                 password: "",
             }
-        })
+        });
 
     } catch (error) {
         console.log("Error in sign up controller", error.message)
