@@ -5,6 +5,7 @@ import express from "express"; //ESmodules
 //Routes Imports
 import authRoutes from "./routes/auth.route.js"
 import movieRoutes from "./routes/movie.route.js"
+import tvRoutes from "./routes/tv.route.js"
 
 //Config Imports
 import { ENV_VARS } from "./config/envVariables.js";
@@ -17,6 +18,7 @@ app.use(express.json()); // will alow us to parse req.body
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/movie", movieRoutes);
+app.use("/api/v1/tv", tvRoutes);
 
 
 app.listen(PORT, () => {
