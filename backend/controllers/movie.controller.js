@@ -52,11 +52,11 @@ export const getSimilarMovies = async (req, res) => {
     }
 }
 
-export const getMovieByList = async (req, res) => {
-    const { list } = req.params;
+export const getMovieByCategory = async (req, res) => {
+    const { category } = req.params;
     try {
-        const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${list}?language=en-US&page=1`)
-        res.status(200).json({ success: true, list: data.results });
+        const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`)
+        res.status(200).json({ success: true, category: data.results });
     } catch (error) {
         res.status(500).json({ success: false, message: "Internal server error" });
     }
